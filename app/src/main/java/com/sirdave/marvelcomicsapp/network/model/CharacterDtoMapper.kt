@@ -17,7 +17,7 @@ class CharacterDtoMapper: DomainMapper<CharacterDto, Character> {
 
     private fun generateImageUrl(thumbnail: Thumbnail?): String{
         //string concatenation of path and extension
-        return thumbnail?.path + thumbnail?.extension
+        return "${thumbnail?.path}.${thumbnail?.extension}"
     }
 
     fun toDomainList(inital: List<CharacterDto>): List<Character>{
