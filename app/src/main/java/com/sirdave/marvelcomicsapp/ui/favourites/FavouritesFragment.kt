@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.marvelcomicsapp.adapter.FavouriteRecyclerAdapter
 import com.sirdave.marvelcomicsapp.databinding.FragmentFavouriteBinding
-import com.sirdave.marvelcomicsapp.domain.Character
+import com.sirdave.marvelcomicsapp.domain.model.Character
 
 class FavouritesFragment : Fragment() {
 

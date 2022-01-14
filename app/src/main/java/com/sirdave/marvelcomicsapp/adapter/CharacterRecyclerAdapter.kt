@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.marvelcomicsapp.R
-import com.sirdave.marvelcomicsapp.domain.Character
+import com.sirdave.marvelcomicsapp.domain.model.Character
 
 class CharacterRecyclerAdapter(
     val context: Context,
