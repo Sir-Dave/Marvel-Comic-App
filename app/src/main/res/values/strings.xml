@@ -3,4 +3,5 @@
     <string name="title_characters">Characters</string>
     <string name="title_favourites">Favourites</string>
     <string name="image_of_marvel_character">Image of marvel character</string>
+    <string name="placeholder_image">Placeholder image</string>
 </resources>

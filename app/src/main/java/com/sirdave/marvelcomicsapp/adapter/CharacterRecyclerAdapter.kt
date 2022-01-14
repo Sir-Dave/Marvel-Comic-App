@@ -29,8 +29,8 @@ class CharacterRecyclerAdapter(
     override fun getItemCount(): Int = characterList.size
 
     inner class RecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val image: ImageView = itemView.findViewById(R.id.characterImage)
-        val name: TextView = itemView.findViewById(R.id.characterName)
+        val image: ImageView = itemView.findViewById(R.id.txt_character_image)
+        val name: TextView = itemView.findViewById(R.id.txt_character_name)
 
         fun setData(character: Character, position: Int){
             //TODO: Display the data obtained here
