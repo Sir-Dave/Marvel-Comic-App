@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.secrets_gradle_plugin' version '0.4'
 }
 
@@ -58,4 +60,13 @@ dependencies {
     def glide_version = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //Hilt
+    def hilt = "2.38.1"
+    implementation "com.google.dagger:hilt-android:$hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+
+    def hilt_lifecycle = "1.0.0"
+    kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle"
+
 }

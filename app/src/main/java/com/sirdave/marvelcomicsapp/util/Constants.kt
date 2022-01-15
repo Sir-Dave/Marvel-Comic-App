@@ -9,7 +9,7 @@ object Constants {
     const val API_KEY: String = BuildConfig.PUBLIC_KEY
     const val PRIVATE_KEY = BuildConfig.PRIVATE_KEY
     const val limit = "100"
-    const val BASE_URL = "http://gateway.marvel.com/v1/public/"
+    const val BASE_URL = "https://gateway.marvel.com/v1/public/"
     val TIMESTAMP = System.currentTimeMillis().toString()
 
 

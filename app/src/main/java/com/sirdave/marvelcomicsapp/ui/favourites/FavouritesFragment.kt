@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.marvelcomicsapp.adapter.FavouriteRecyclerAdapter
 import com.sirdave.marvelcomicsapp.databinding.FragmentFavouriteBinding
 import com.sirdave.marvelcomicsapp.domain.model.Character
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouritesFragment : Fragment() {
 
     private var _binding: FragmentFavouriteBinding? = null

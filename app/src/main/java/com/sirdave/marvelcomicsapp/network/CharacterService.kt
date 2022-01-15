@@ -10,19 +10,19 @@ import retrofit2.http.Query
 interface CharacterService {
     @GET("characters")
     suspend fun getAllCharacters(
-        @Query("ts") ts: String = Constants.TIMESTAMP,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("hash") hash: String = Constants.hash(),
-        @Query("limit") limit: String = Constants.limit,
+        @Query("ts") ts: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String,
+        @Query("limit") limit: String
     ): CharacterResponse
 
 
     @GET("characters/{id}")
     suspend fun getCharacterById(
         @Path("id") id: Int,
-        @Query("ts") ts: String = Constants.TIMESTAMP,
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("hash") hash: String = Constants.hash(),
-        @Query("limit") limit: String = Constants.limit,
+        @Query("ts") ts: String,
+        @Query("apikey") apikey: String,
+        @Query("hash") hash: String,
+        @Query("limit") limit: String,
     ): CharacterResponse
 }
