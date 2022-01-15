@@ -31,7 +31,6 @@ class CharacterFragment : Fragment() {
         recyclerView = binding.characterRecyclerView
 
         viewModel.characters.observe(viewLifecycleOwner, { characters ->
-            Log.d("AppDebug", "Marvel characters are $characters")
             setUpRecyclerView(characters)
         })
         return root

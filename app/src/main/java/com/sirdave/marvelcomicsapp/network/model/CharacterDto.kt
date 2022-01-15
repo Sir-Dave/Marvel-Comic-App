@@ -21,7 +21,7 @@ data class CharacterDto (
     @SerializedName("resourceURI")
     val resourceURI: String? = null,
 
-    @SerializedName("thumbnails")
+    @SerializedName("thumbnail")
     val thumbnail: Thumbnail? = null,
 )
 
