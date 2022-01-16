@@ -11,6 +11,7 @@ object Constants {
     const val limit = "100"
     const val BASE_URL = "https://gateway.marvel.com/v1/public/"
     val TIMESTAMP = System.currentTimeMillis().toString()
+    const val CHARACTER_ID = "characterId"
 
 
     fun hash(): String{

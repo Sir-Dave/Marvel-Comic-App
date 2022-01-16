@@ -7,14 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_character"
-        android:name="com.sirdave.marvelcomicsapp.ui.character.CharacterFragment"
+        android:name="com.sirdave.marvelcomicsapp.ui.character_list.CharacterListFragment"
         android:label="@string/title_characters"
-        tools:layout="@layout/fragment_character" />
+        tools:layout="@layout/fragment_character_list">
+        <action
+            android:id="@+id/viewCharacter"
+            app:destination="@id/navigation_one_character" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favourite"
         android:name="com.sirdave.marvelcomicsapp.ui.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourite" />
+
+    <fragment
+        android:id="@+id/navigation_one_character"
+        android:name="com.sirdave.marvelcomicsapp.ui.character.CharacterFragment"
+        android:label="@string/one_character"
+        tools:layout="@layout/fragment_character" />
 
 </navigation>
