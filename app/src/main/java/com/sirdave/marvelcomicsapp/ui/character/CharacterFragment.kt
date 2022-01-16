@@ -1,17 +1,21 @@
 package com.sirdave.marvelcomicsapp.ui.character
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.sirdave.marvelcomicsapp.R
 import com.sirdave.marvelcomicsapp.databinding.FragmentCharacterBinding
 import com.sirdave.marvelcomicsapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +33,9 @@ class CharacterFragment : Fragment() {
     private lateinit var characterImage: ImageView
     private lateinit var characterDesc: TextView
     private lateinit var closeButton: ImageView
+
+    private lateinit var isFavouriteFilled: Drawable
+    private lateinit var isFavouriteBordered: Drawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +55,13 @@ class CharacterFragment : Fragment() {
         favouriteIcon = binding.favourite
         closeButton = binding.close
 
+        isFavouriteFilled =  ContextCompat.getDrawable(requireContext(),
+            R.drawable.ic_favourite_filled)!!
+
+
+        isFavouriteBordered = ContextCompat.getDrawable(requireContext(),
+            R.drawable.ic_favourite)!!
+
         viewModel.characterId.observe(viewLifecycleOwner, { character ->
 
             characterName.text = character.name
@@ -56,10 +70,16 @@ class CharacterFragment : Fragment() {
             Glide.with(requireContext()).load(character.featuredImage).into(characterImage)
             favouriteIcon.setOnClickListener {
                 // TODO: Switch icons and add to favourite
+                if(favouriteIcon.drawable == isFavouriteFilled){
+                    favouriteIcon.setImageDrawable(isFavouriteBordered)
+                }
+                else
+                    favouriteIcon.setImageDrawable(isFavouriteFilled)
             }
 
             closeButton.setOnClickListener {
-                // return to the previous fragment
+                val navController = Navigation.findNavController(it)
+                navController.popBackStack()
             }
         })
 
