@@ -1,18 +1,24 @@
 package com.sirdave.marvelcomicsapp.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sirdave.marvelcomicsapp.R
+import com.sirdave.marvelcomicsapp.db.entity.Favourite
 import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.util.Constants
 
 class FavouriteRecyclerAdapter(
     val context: Context,
-    private var characterList: List<Character>
+    private var favouriteList: List<Favourite>
     ): RecyclerView.Adapter<FavouriteRecyclerAdapter.RecyclerViewHolder>() {
 
 
@@ -22,18 +28,22 @@ class FavouriteRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        val character = characterList[position]
-        holder.setData(character, position)
+        val character = favouriteList[position]
+        holder.name.text = character.name
+        holder.parent.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt(Constants.CHARACTER_ID, character.id!!)
+            val navController = Navigation.findNavController(it)
+            navController.navigate(R.id.viewCharacter, bundle)
+        }
+        Glide.with(context).load(character.featuredImage).into(holder.image)
     }
 
-    override fun getItemCount(): Int = characterList.size
+    override fun getItemCount(): Int = favouriteList.size
 
     inner class RecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val image: ImageView = itemView.findViewById(R.id.txt_character_image)
         val name: TextView = itemView.findViewById(R.id.txt_character_name)
-
-        fun setData(character: Character, position: Int){
-            //TODO: Display the data obtained here
-        }
+        val parent: CardView = itemView.findViewById(R.id.root_card_view)
     }
 }

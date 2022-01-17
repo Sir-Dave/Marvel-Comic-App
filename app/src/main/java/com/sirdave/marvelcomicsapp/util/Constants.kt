@@ -10,8 +10,9 @@ object Constants {
     const val PRIVATE_KEY = BuildConfig.PRIVATE_KEY
     const val limit = "100"
     const val BASE_URL = "https://gateway.marvel.com/v1/public/"
-    val TIMESTAMP = System.currentTimeMillis().toString()
     const val CHARACTER_ID = "characterId"
+    const val APP_DATABASE = "marvel_db"
+    val TIMESTAMP = System.currentTimeMillis().toString()
 
 
     fun hash(): String{

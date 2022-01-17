@@ -70,4 +70,9 @@ dependencies {
     def hilt_lifecycle = "1.0.0"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle"
 
+    // Room components
+    def room_version = "2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
 }

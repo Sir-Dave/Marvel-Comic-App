@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sirdave.marvelcomicsapp.adapter.FavouriteRecyclerAdapter
 import com.sirdave.marvelcomicsapp.databinding.FragmentFavouriteBinding
+import com.sirdave.marvelcomicsapp.db.entity.Favourite
 import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.ui.character.CharacterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +21,7 @@ class FavouritesFragment : Fragment() {
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private val favouriteList = arrayListOf<Character>() //TODO: Get this from the viewModel
+    private val favViewModel: FavouritesViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -26,13 +29,16 @@ class FavouritesFragment : Fragment() {
         _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         val root: View = binding.root
         recyclerView = binding.favouriteRecyclerView
-        setUpRecyclerView()
+
+        favViewModel.favourites.observe(viewLifecycleOwner, {favourites ->
+            setUpRecyclerView(favourites)
+        })
         return root
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView(favourites: List<Favourite>){
         val context = requireContext()
-        val adapter = FavouriteRecyclerAdapter(context, favouriteList)
+        val adapter = FavouriteRecyclerAdapter(context, favourites)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
 
