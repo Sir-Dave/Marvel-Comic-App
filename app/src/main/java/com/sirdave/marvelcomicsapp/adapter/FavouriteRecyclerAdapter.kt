@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sirdave.marvelcomicsapp.R
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
-import com.sirdave.marvelcomicsapp.domain.model.Character
 import com.sirdave.marvelcomicsapp.util.Constants
 
 class FavouriteRecyclerAdapter(
@@ -28,15 +27,15 @@ class FavouriteRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
-        val character = favouriteList[position]
-        holder.name.text = character.name
+        val favourite = favouriteList[position]
+        holder.name.text = favourite.name
         holder.parent.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt(Constants.CHARACTER_ID, character.id!!)
+            bundle.putInt(Constants.CHARACTER_ID, favourite.id!!)
             val navController = Navigation.findNavController(it)
             navController.navigate(R.id.viewCharacter, bundle)
         }
-        Glide.with(context).load(character.featuredImage).into(holder.image)
+        Glide.with(context).load(favourite.featuredImage).into(holder.image)
     }
 
     override fun getItemCount(): Int = favouriteList.size

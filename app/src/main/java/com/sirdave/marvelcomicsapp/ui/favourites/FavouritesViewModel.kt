@@ -1,30 +1,29 @@
 package com.sirdave.marvelcomicsapp.ui.favourites
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
+import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
 import kotlinx.coroutines.launch
 
 class FavouritesViewModel(
     private val repository: CharacterRepository) : ViewModel() {
 
-    private var _favourites = repository.getAllFavourites().asLiveData()
-    val favourites = _favourites
+    private var _favourites: MutableLiveData<List<Favourite>> = MutableLiveData()
+    val favourites: LiveData<List<Favourite>> = _favourites
 
+    init {
+        getAllFavourites()
+    }
 
-    fun getOneWord(id: Long) = viewModelScope.launch {
+    private fun getAllFavourites(){
+        viewModelScope.launch {
+            val results = repository.getAllFavourites()
+            _favourites.value = results
+        }
+    }
+
+    fun getOneFavourite(id: Long) = viewModelScope.launch {
         repository.getOneFavourite(id)
     }
-
-    fun insert(favourite: Favourite) = viewModelScope.launch {
-        repository.addNewFavourite(favourite)
-    }
-
-    fun delete(favourite: Favourite) = viewModelScope.launch {
-        repository.deleteFavourite(favourite)
-    }
-
-
 }

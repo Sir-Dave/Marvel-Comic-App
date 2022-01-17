@@ -69,12 +69,16 @@ class CharacterFragment : Fragment() {
             characterDesc.text = character.description
             Glide.with(requireContext()).load(character.featuredImage).into(characterImage)
             favouriteIcon.setOnClickListener {
-                // TODO: Switch icons and add to favourite
                 if(favouriteIcon.drawable == isFavouriteFilled){
+                    // remove from favourite
+                    viewModel.deleteFavourite(character)
                     favouriteIcon.setImageDrawable(isFavouriteBordered)
                 }
-                else
+                else{
+                    //add to favourite
+                    viewModel.addNewFavourite(character)
                     favouriteIcon.setImageDrawable(isFavouriteFilled)
+                }
             }
 
             closeButton.setOnClickListener {

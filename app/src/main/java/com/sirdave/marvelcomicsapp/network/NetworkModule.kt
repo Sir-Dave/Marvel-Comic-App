@@ -2,6 +2,7 @@ package com.sirdave.marvelcomicsapp.network
 
 import android.content.Context
 import com.google.gson.GsonBuilder
+import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
 import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
 import com.sirdave.marvelcomicsapp.repository.CharacterRepositoryImpl
@@ -45,10 +46,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    fun provideFavouriteDao(@ApplicationContext app: Context): FavouriteDao{
+        return provideApplication(app).database.favouriteDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideCharacterRepository(characterService: CharacterService,
-                                   characterDtoMapper: CharacterDtoMapper):
+                                   characterDtoMapper: CharacterDtoMapper,
+                                   favouriteDao: FavouriteDao):
             CharacterRepository {
-        return CharacterRepositoryImpl(characterService, characterDtoMapper)
+        return CharacterRepositoryImpl(characterService, characterDtoMapper, favouriteDao)
     }
 
     @Singleton

@@ -14,12 +14,12 @@ class CharacterRepositoryImpl(
     private val favouriteDao: FavouriteDao): CharacterRepository {
 
     @WorkerThread
-    override fun getAllFavourites(): Flow<List<Favourite>> {
+    override suspend fun getAllFavourites(): List<Favourite> {
         return favouriteDao.getAllFavourites()
     }
 
     @WorkerThread
-    override fun getOneFavourite(id: Long): Flow<Favourite> {
+    override suspend fun getOneFavourite(id: Long): Favourite {
         return favouriteDao.getOneFavourite(id)
     }
 
@@ -32,7 +32,6 @@ class CharacterRepositoryImpl(
     override suspend fun deleteFavourite(favourite: Favourite) {
         favouriteDao.deleteFavourite(favourite)
     }
-
 
     override suspend fun getAllCharacters(ts: String,
         apikey: String, hash: String, limit: String): List<Character> {
