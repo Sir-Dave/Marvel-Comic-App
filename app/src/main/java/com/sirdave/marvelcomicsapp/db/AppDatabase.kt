@@ -12,21 +12,4 @@ import com.sirdave.marvelcomicsapp.util.Constants
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun favouriteDao(): FavouriteDao
-
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-
-        fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    Constants.APP_DATABASE)
-                    .build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
 }

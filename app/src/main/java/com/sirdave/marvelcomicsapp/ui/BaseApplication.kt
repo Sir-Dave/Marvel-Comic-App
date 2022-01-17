@@ -7,6 +7,4 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 @HiltAndroidApp
-class BaseApplication: Application() {
-    val database by lazy { AppDatabase.getDatabase(this) }
-}
+class BaseApplication: Application()

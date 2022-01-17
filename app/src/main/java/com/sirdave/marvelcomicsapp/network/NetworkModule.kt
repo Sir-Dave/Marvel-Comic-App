@@ -1,7 +1,9 @@
 package com.sirdave.marvelcomicsapp.network
 
 import android.content.Context
+import androidx.room.Room
 import com.google.gson.GsonBuilder
+import com.sirdave.marvelcomicsapp.db.AppDatabase
 import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
 import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
@@ -30,6 +32,23 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            Constants.APP_DATABASE
+        )
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavouriteDao(db: AppDatabase): FavouriteDao{
+        return db.favouriteDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideCharacterMapper(): CharacterDtoMapper{
         return CharacterDtoMapper()
     }
@@ -42,12 +61,6 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
             .create(CharacterService::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideFavouriteDao(@ApplicationContext app: Context): FavouriteDao{
-        return provideApplication(app).database.favouriteDao()
     }
 
     @Singleton

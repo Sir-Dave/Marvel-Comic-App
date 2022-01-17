@@ -10,6 +10,5 @@ data class Favourite(
     @PrimaryKey val id: Int?,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "description") val description: String?,
-    @ColumnInfo(name = "modified") val modified: Date?,
     @ColumnInfo(name = "featuredImage") val featuredImage: String?
 )

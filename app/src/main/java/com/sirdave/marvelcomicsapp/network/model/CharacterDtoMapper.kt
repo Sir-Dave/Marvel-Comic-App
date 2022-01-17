@@ -21,7 +21,6 @@ class CharacterDtoMapper: DomainMapper<CharacterDto, Character> {
             id = model.id,
             name = model.name,
             description = model.description,
-            modified = model.modified,
             featuredImage = model.featuredImage
         )
     }
@@ -31,7 +30,6 @@ class CharacterDtoMapper: DomainMapper<CharacterDto, Character> {
             id = model.id,
             name = model.name,
             description = model.description,
-            modified = model.modified,
             featuredImage = model.featuredImage
         )
     }

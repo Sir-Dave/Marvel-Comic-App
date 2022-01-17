@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
 import com.sirdave.marvelcomicsapp.domain.model.Character
 import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
