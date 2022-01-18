@@ -28,8 +28,13 @@ class CharacterListViewModel @Inject constructor(
 
     private fun getCharacters(){
         viewModelScope.launch {
-            val result = repository.getAllCharacters(ts, apikey, hash, limit)
-            _characters.value = result
+            try {
+                val result = repository.getAllCharacters(ts, apikey, hash, limit)
+                _characters.value = result
+            }
+            catch (ex: Exception){
+                ex.printStackTrace()
+            }
         }
     }
 }

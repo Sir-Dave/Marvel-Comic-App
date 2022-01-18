@@ -20,7 +20,12 @@
         android:id="@+id/navigation_favourite"
         android:name="com.sirdave.marvelcomicsapp.ui.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite">
+        <action
+            android:id="@+id/viewFavouriteCharacter"
+            app:destination="@id/navigation_one_character" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_one_character"

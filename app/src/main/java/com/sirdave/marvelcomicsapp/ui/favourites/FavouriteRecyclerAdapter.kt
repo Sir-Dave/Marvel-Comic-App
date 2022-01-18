@@ -33,7 +33,7 @@ class FavouriteRecyclerAdapter(
             val bundle = Bundle()
             bundle.putInt(Constants.CHARACTER_ID, favourite.id!!)
             val navController = Navigation.findNavController(it)
-            navController.navigate(R.id.viewCharacter, bundle)
+            navController.navigate(R.id.viewFavouriteCharacter, bundle)
         }
         Glide.with(context).load(favourite.featuredImage).into(holder.image)
     }
