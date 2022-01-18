@@ -1,19 +1,16 @@
-package com.sirdave.marvelcomicsapp.network
+package com.sirdave.marvelcomicsapp.di
 
-import android.content.Context
-import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.sirdave.marvelcomicsapp.db.AppDatabase
 import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
-import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
+import com.sirdave.marvelcomicsapp.network.CharacterService
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
 import com.sirdave.marvelcomicsapp.repository.CharacterRepositoryImpl
-import com.sirdave.marvelcomicsapp.ui.BaseApplication
+import com.sirdave.marvelcomicsapp.util.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,30 +23,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext app: Context): BaseApplication {
-        return app as BaseApplication
-    }
-
-    @Singleton
-    @Provides
-    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            Constants.APP_DATABASE
-        )
-            .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideFavouriteDao(db: AppDatabase): FavouriteDao{
-        return db.favouriteDao()
-    }
-
-    @Singleton
-    @Provides
-    fun provideCharacterMapper(): CharacterDtoMapper{
+    fun provideCharacterMapper(): CharacterDtoMapper {
         return CharacterDtoMapper()
     }
 
@@ -63,14 +37,6 @@ object NetworkModule {
             .create(CharacterService::class.java)
     }
 
-    @Singleton
-    @Provides
-    fun provideCharacterRepository(characterService: CharacterService,
-                                   characterDtoMapper: CharacterDtoMapper,
-                                   favouriteDao: FavouriteDao):
-            CharacterRepository {
-        return CharacterRepositoryImpl(characterService, characterDtoMapper, favouriteDao)
-    }
 
     @Singleton
     @Provides

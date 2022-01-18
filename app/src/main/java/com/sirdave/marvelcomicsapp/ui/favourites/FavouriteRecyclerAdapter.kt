@@ -1,4 +1,4 @@
-package com.sirdave.marvelcomicsapp.adapter
+package com.sirdave.marvelcomicsapp.ui.favourites
 
 import android.content.Context
 import android.os.Bundle

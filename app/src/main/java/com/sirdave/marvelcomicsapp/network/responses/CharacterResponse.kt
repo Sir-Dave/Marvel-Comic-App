@@ -1,7 +1,6 @@
 package com.sirdave.marvelcomicsapp.network.responses
 
 import com.google.gson.annotations.SerializedName
-import com.sirdave.marvelcomicsapp.network.model.CharacterDto
 
 
 class CharacterResponse (

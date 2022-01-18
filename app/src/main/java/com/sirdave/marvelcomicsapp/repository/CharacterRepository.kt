@@ -1,7 +1,7 @@
 package com.sirdave.marvelcomicsapp.repository
 
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
-import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.domain.Character
 
 interface CharacterRepository {
     suspend fun getAllCharacters(ts: String, apikey: String,

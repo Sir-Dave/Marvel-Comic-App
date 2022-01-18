@@ -1,7 +1,7 @@
-package com.sirdave.marvelcomicsapp.network.model
+package com.sirdave.marvelcomicsapp.network.responses
 
 import com.google.gson.annotations.SerializedName
-import com.sirdave.marvelcomicsapp.domain.model.Thumbnail
+import com.sirdave.marvelcomicsapp.domain.Thumbnail
 import java.util.*
 
 

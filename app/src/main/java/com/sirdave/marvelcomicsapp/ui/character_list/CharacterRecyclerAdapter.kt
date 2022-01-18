@@ -1,4 +1,4 @@
-package com.sirdave.marvelcomicsapp.adapter
+package com.sirdave.marvelcomicsapp.ui.character_list
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sirdave.marvelcomicsapp.R
-import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.domain.Character
 import com.sirdave.marvelcomicsapp.util.Constants
 
 class CharacterRecyclerAdapter(

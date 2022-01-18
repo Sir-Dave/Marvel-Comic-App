@@ -1,9 +1,9 @@
-package com.sirdave.marvelcomicsapp.network.model
+package com.sirdave.marvelcomicsapp.util
 
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
-import com.sirdave.marvelcomicsapp.domain.model.Character
-import com.sirdave.marvelcomicsapp.domain.model.Thumbnail
-import com.sirdave.marvelcomicsapp.domain.util.DomainMapper
+import com.sirdave.marvelcomicsapp.domain.Character
+import com.sirdave.marvelcomicsapp.domain.Thumbnail
+import com.sirdave.marvelcomicsapp.network.responses.CharacterDto
 
 class CharacterDtoMapper: DomainMapper<CharacterDto, Character> {
 

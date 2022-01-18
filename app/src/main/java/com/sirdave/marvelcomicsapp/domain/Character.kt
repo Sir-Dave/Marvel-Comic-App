@@ -1,4 +1,4 @@
-package com.sirdave.marvelcomicsapp.domain.model
+package com.sirdave.marvelcomicsapp.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

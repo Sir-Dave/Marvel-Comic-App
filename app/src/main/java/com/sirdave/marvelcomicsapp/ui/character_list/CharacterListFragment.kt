@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sirdave.marvelcomicsapp.adapter.CharacterRecyclerAdapter
-import com.sirdave.marvelcomicsapp.databinding.FragmentCharacterBinding
 import com.sirdave.marvelcomicsapp.databinding.FragmentCharacterListBinding
-import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.domain.Character
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

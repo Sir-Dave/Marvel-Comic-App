@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
-import com.sirdave.marvelcomicsapp.db.entity.Favourite
-import com.sirdave.marvelcomicsapp.domain.model.Character
-import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
+import com.sirdave.marvelcomicsapp.domain.Character
+import com.sirdave.marvelcomicsapp.util.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
@@ -22,7 +19,8 @@ class CharacterViewModel @Inject constructor(
     @Named("time_stamp") private val ts: String,
     @Named("apikey") private val apikey: String,
     @Named("limit") private val limit: String,
-    private val mapper: CharacterDtoMapper) : ViewModel() {
+    private val mapper: CharacterDtoMapper
+) : ViewModel() {
 
     private val _characterById: MutableLiveData<Character> = MutableLiveData()
     val characterId: LiveData<Character> get() = _characterById

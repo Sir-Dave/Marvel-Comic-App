@@ -3,10 +3,9 @@ package com.sirdave.marvelcomicsapp.repository
 import androidx.annotation.WorkerThread
 import com.sirdave.marvelcomicsapp.db.dao.FavouriteDao
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
-import com.sirdave.marvelcomicsapp.domain.model.Character
+import com.sirdave.marvelcomicsapp.domain.Character
 import com.sirdave.marvelcomicsapp.network.CharacterService
-import com.sirdave.marvelcomicsapp.network.model.CharacterDtoMapper
-import kotlinx.coroutines.flow.Flow
+import com.sirdave.marvelcomicsapp.util.CharacterDtoMapper
 
 class CharacterRepositoryImpl(
     private val characterService: CharacterService,
