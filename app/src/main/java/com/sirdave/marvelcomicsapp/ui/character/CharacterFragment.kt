@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sirdave.marvelcomicsapp.R
 import com.sirdave.marvelcomicsapp.databinding.FragmentCharacterBinding
+import com.sirdave.marvelcomicsapp.domain.Character
 import com.sirdave.marvelcomicsapp.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,6 +49,13 @@ class CharacterFragment : Fragment() {
         savedInstanceState: Bundle?): View {
         _binding = FragmentCharacterBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        isFavouriteFilled =  ContextCompat.getDrawable(requireContext(),
+            R.drawable.ic_favourite_filled)!!
+
+        isFavouriteBordered = ContextCompat.getDrawable(requireContext(),
+            R.drawable.ic_favourite)!!
+
         characterName = binding.characterName
         characterNameHeadline = binding.characterNameHeadline
         characterImage = binding.characterImage
@@ -55,30 +63,16 @@ class CharacterFragment : Fragment() {
         favouriteIcon = binding.favourite
         closeButton = binding.close
 
-        isFavouriteFilled =  ContextCompat.getDrawable(requireContext(),
-            R.drawable.ic_favourite_filled)!!
-
-
-        isFavouriteBordered = ContextCompat.getDrawable(requireContext(),
-            R.drawable.ic_favourite)!!
-
         viewModel.characterId.observe(viewLifecycleOwner, { character ->
 
+            setFavouriteIcon(character)
             characterName.text = character.name
             characterNameHeadline.text = character.name
             characterDesc.text = character.description
             Glide.with(requireContext()).load(character.featuredImage).into(characterImage)
+
             favouriteIcon.setOnClickListener {
-                if(favouriteIcon.drawable == isFavouriteFilled){
-                    // remove from favourite
-                    viewModel.deleteFavourite(character)
-                    favouriteIcon.setImageDrawable(isFavouriteBordered)
-                }
-                else{
-                    //add to favourite
-                    viewModel.addNewFavourite(character)
-                    favouriteIcon.setImageDrawable(isFavouriteFilled)
-                }
+                addRemoveFromFavourite(character)
             }
 
             closeButton.setOnClickListener {
@@ -98,5 +92,28 @@ class CharacterFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+    }
+
+    private fun setFavouriteIcon(character: Character){
+        // check whether the character is a favourite and set the appropriate icon on it
+        if (viewModel.isFavouriteExists(character)){
+            favouriteIcon.setImageDrawable(isFavouriteFilled)
+        }
+        else{
+            favouriteIcon.setImageDrawable(isFavouriteBordered)
+        }
+    }
+
+    private fun addRemoveFromFavourite(character: Character){
+        if(favouriteIcon.drawable == isFavouriteFilled){
+            // remove from favourite
+            viewModel.deleteFavourite(character)
+            favouriteIcon.setImageDrawable(isFavouriteBordered)
+        }
+        else{
+            //add to favourite
+            viewModel.addNewFavourite(character)
+            favouriteIcon.setImageDrawable(isFavouriteFilled)
+        }
     }
 }

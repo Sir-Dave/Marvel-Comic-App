@@ -9,6 +9,7 @@ import com.sirdave.marvelcomicsapp.util.CharacterDtoMapper
 import com.sirdave.marvelcomicsapp.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -44,5 +45,10 @@ class CharacterViewModel @Inject constructor(
     fun deleteFavourite(character: Character) = viewModelScope.launch {
         val favourite = mapper.mapCharacterToFavourite(character)
         repository.deleteFavourite(favourite)
+    }
+
+    fun isFavouriteExists(character: Character): Boolean = runBlocking {
+        val isExists = repository.getOneFavourite(character.id!!)
+        return@runBlocking isExists != null
     }
 }

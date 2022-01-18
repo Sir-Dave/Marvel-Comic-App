@@ -19,7 +19,7 @@ class CharacterRepositoryImpl(
     }
 
     @WorkerThread
-    override fun getOneFavourite(id: Long): Flow<Favourite?> {
+    override suspend fun getOneFavourite(id: Int): Favourite? {
         return favouriteDao.getOneFavourite(id)
     }
 

@@ -13,7 +13,7 @@ interface CharacterRepository {
 
     fun getAllFavourites(): Flow<List<Favourite>>
 
-    fun getOneFavourite(id: Long): Flow<Favourite?>
+    suspend fun getOneFavourite(id: Int): Favourite?
 
     suspend fun addNewFavourite(favourite: Favourite)
 

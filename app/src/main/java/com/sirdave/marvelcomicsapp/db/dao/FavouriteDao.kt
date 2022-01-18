@@ -11,7 +11,7 @@ interface FavouriteDao {
     fun getAllFavourites(): Flow<List<Favourite>>
 
     @Query("SELECT * FROM favourites where id = :id")
-    fun getOneFavourite(id: Long): Flow<Favourite?>
+    suspend fun getOneFavourite(id: Int): Favourite?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewFavourite(favourite: Favourite)
