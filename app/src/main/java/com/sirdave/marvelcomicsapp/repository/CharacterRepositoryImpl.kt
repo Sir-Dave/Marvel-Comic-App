@@ -6,6 +6,7 @@ import com.sirdave.marvelcomicsapp.db.entity.Favourite
 import com.sirdave.marvelcomicsapp.domain.Character
 import com.sirdave.marvelcomicsapp.network.CharacterService
 import com.sirdave.marvelcomicsapp.util.CharacterDtoMapper
+import kotlinx.coroutines.flow.Flow
 
 class CharacterRepositoryImpl(
     private val characterService: CharacterService,
@@ -13,12 +14,12 @@ class CharacterRepositoryImpl(
     private val favouriteDao: FavouriteDao): CharacterRepository {
 
     @WorkerThread
-    override suspend fun getAllFavourites(): List<Favourite> {
+    override fun getAllFavourites(): Flow<List<Favourite>> {
         return favouriteDao.getAllFavourites()
     }
 
     @WorkerThread
-    override suspend fun getOneFavourite(id: Long): Favourite {
+    override fun getOneFavourite(id: Long): Flow<Favourite?> {
         return favouriteDao.getOneFavourite(id)
     }
 

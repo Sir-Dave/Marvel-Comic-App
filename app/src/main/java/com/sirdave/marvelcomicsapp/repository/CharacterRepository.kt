@@ -2,6 +2,7 @@ package com.sirdave.marvelcomicsapp.repository
 
 import com.sirdave.marvelcomicsapp.db.entity.Favourite
 import com.sirdave.marvelcomicsapp.domain.Character
+import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
     suspend fun getAllCharacters(ts: String, apikey: String,
@@ -10,9 +11,9 @@ interface CharacterRepository {
     suspend fun getCharacterById(id: Int, ts: String, apikey: String,
                                  hash: String, limit: String): Character
 
-    suspend fun getAllFavourites(): List<Favourite>
+    fun getAllFavourites(): Flow<List<Favourite>>
 
-    suspend fun getOneFavourite(id: Long): Favourite
+    fun getOneFavourite(id: Long): Flow<Favourite?>
 
     suspend fun addNewFavourite(favourite: Favourite)
 
