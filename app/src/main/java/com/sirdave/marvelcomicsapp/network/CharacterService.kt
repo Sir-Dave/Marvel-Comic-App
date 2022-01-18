@@ -12,8 +12,7 @@ interface CharacterService {
     suspend fun getAllCharacters(
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
-        @Query("hash") hash: String,
-        @Query("limit") limit: String
+        @Query("hash") hash: String
     ): CharacterResponse
 
 
@@ -22,7 +21,6 @@ interface CharacterService {
         @Path("id") id: Int,
         @Query("ts") ts: String,
         @Query("apikey") apikey: String,
-        @Query("hash") hash: String,
-        @Query("limit") limit: String,
+        @Query("hash") hash: String
     ): CharacterResponse
 }

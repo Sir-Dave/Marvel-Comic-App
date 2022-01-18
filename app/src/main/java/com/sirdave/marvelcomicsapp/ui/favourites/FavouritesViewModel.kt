@@ -11,7 +11,6 @@ import javax.inject.Inject
 class FavouritesViewModel @Inject constructor(
     private val repository: CharacterRepository) : ViewModel() {
 
-    //private var _favourites: MutableLiveData<List<Favourite>> = MutableLiveData()
     var favourites: LiveData<List<Favourite>> = MutableLiveData()
 
     init {

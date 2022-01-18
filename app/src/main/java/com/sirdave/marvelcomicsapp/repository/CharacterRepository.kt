@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
     suspend fun getAllCharacters(ts: String, apikey: String,
-                                 hash: String, limit: String): List<Character>
+                                 hash: String): List<Character>
 
     suspend fun getCharacterById(id: Int, ts: String, apikey: String,
-                                 hash: String, limit: String): Character
+                                 hash: String): Character
 
     fun getAllFavourites(): Flow<List<Favourite>>
 

@@ -34,16 +34,16 @@ class CharacterRepositoryImpl(
     }
 
     override suspend fun getAllCharacters(ts: String,
-        apikey: String, hash: String, limit: String): List<Character> {
+        apikey: String, hash: String): List<Character> {
         val response = characterService
-            .getAllCharacters(ts, apikey, hash, limit).data?.results!!
+            .getAllCharacters(ts, apikey, hash).data?.results!!
         return mapper.toDomainList(response)
     }
 
     override suspend fun getCharacterById(id: Int, ts: String,
-        apikey: String, hash: String, limit: String): Character {
+        apikey: String, hash: String): Character {
         val response = characterService
-            .getCharacterById(id, ts, apikey, hash, limit).data?.results!!
+            .getCharacterById(id, ts, apikey, hash).data?.results!!
         return mapper.mapToDomainModel(response[0])
     }
 }

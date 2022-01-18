@@ -59,11 +59,4 @@ object NetworkModule {
         return Constants.hash()
     }
 
-    @Singleton
-    @Provides
-    @Named("limit")
-    fun provideLimit(): String{
-        return Constants.limit
-    }
-
 }

@@ -19,7 +19,6 @@ class CharacterViewModel @Inject constructor(
     @Named("hash") private val hash: String,
     @Named("time_stamp") private val ts: String,
     @Named("apikey") private val apikey: String,
-    @Named("limit") private val limit: String,
     private val mapper: CharacterDtoMapper
 ) : ViewModel() {
 
@@ -33,7 +32,7 @@ class CharacterViewModel @Inject constructor(
     }
 
     private suspend fun getCharacter(id: Int){
-        val result = repository.getCharacterById(id, ts, apikey, hash, limit)
+        val result = repository.getCharacterById(id, ts, apikey, hash)
         _characterById.value = result
     }
 
